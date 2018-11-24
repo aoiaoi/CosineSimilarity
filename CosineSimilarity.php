@@ -7,7 +7,12 @@
 class CosineSimilarity {
   
   public function similarity(array $vec1, array $vec2) {
-    return $this->_dotProduct($vec1, $vec2) / ($this->_absVector($vec1) * $this->_absVector($vec2));
+    $divisor = ($this->_absVector($vec1) * $this->_absVector($vec2));
+    if ($divisor == 0) {
+      return 0.0;
+    }
+
+    return $this->_dotProduct($vec1, $vec2) / $divisor;
   }
   
   protected function _dotProduct(array $vec1, array $vec2) {
